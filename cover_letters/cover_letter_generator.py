@@ -1,5 +1,8 @@
-from constants import *
-from hard_skills import read_stack, check_skill, add_to_stack
+from typing import List
+
+# from cover_letters.constants import *
+from settings.constants import *
+from cover_letters.hard_skills import read_stack, check_skill, add_to_stack
 
 
 def get_relevant_experience(requirements: list):
@@ -17,11 +20,11 @@ def get_relevant_experience(requirements: list):
     return relevant.strip(', '), irrelevant.strip(', ')
 
 
-def generator(
+def letter_generator(
     company: str = '',
     position: str = '',
     interest: str = '',
-    requirements: list = None):
+    requirements: List[str] = None):
     relevant, irrelevant = get_relevant_experience(requirements)
     message = MESSAGE.format(
         first_name=FIRST_NAME,
@@ -44,11 +47,11 @@ def save_file(message, company):
 
 if __name__ == '__main__':
     company = COMPANY
-    generator = generator(
+    generator = letter_generator(
         company=company,
         position=POSITION,
         interest=INTEREST,
         requirements=REQUIREMENTS
     )
-    print(generator)
+    print(letter_generator)
     save_file(generator, company)

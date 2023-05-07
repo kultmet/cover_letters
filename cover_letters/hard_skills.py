@@ -2,7 +2,7 @@ import json
 import re
 import os
 
-from constants import ALL_STACK_PATH, MY_STACK_PATH
+from cover_letters.constants import ALL_STACK_PATH, MY_STACK_PATH
 
 
 def read_txt():

@@ -2,7 +2,7 @@ import json
 import re
 import os
 
-from cover_letters.constants import ALL_STACK_PATH, MY_STACK_PATH
+from settings.constants import ALL_STACK_PATH, MY_STACK_PATH
 
 
 def read_txt():
@@ -14,14 +14,14 @@ def read_stack(stack: str) -> dict:
     with open(stack, 'r') as file:
         return json.load(file)
 
-        
+
 def add_to_stack(skills: dict, stack: str):
     with open(stack, 'w') as file:
         json.dump(skills, file, indent=2, ensure_ascii=False)
 
 
 def add_skill(value: str, skills):
-	skills[value.lower()] = value
+    skills[value.lower()] = value
 
 
 def submit_for_verification(keyword: str, skills: dict):
@@ -33,6 +33,7 @@ def submit_for_verification(keyword: str, skills: dict):
         check[answer](keyword, skills)
     except KeyError:
         pass
+
 
 def check_skill(skill: str, skills: dict):
     """
@@ -49,6 +50,7 @@ def iteration_for_check_skills(filtered_skills: list, skills: dict):
     """Итерирует по списку скилов."""
     for skill in filtered_skills:
         check_skill(skill, skills)
+
 
 def iteration_for_check_user_skills(all_skills, user_skills):
     """Итерирует по списку скилов ползователя."""
@@ -76,7 +78,6 @@ def get_work_requirements():
     iteration_for_check_skills(filtered_skills, skills)
     add_to_stack(skills, ALL_STACK_PATH)
 
-# def check_user_sckil
 
 def add_my_skills():
     """Функция заполняет словарь со скилами пользователя."""
@@ -86,7 +87,7 @@ def add_my_skills():
     user_skills = read_stack(MY_STACK_PATH)
     iteration_for_check_user_skills(all_skills, user_skills)
     add_to_stack(user_skills, MY_STACK_PATH)
-    
+
 
 if __name__ == '__main__':
     add_my_skills()

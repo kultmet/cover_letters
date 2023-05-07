@@ -28,6 +28,8 @@ PHONE_NUMBER = '+79676411880'
 
 COMPANY = 'Бар'
 POSITION = 'Хороший парень'
-INTEREST= 'пить пиво вместе'
-REQUIREMENTS = ['Python', 'PostgreSQL', 'Linux', 'Docker', 'Asyncio', 'Redis', 'Git', 'GraphQL', 'Kubernetes', 'fuck']
-
+INTEREST = 'пить пиво вместе'
+REQUIREMENTS = [
+    'Python', 'PostgreSQL', 'Linux', 'Docker', 'Asyncio',
+    'Redis', 'Git', 'GraphQL', 'Kubernetes', 'fuck'
+]

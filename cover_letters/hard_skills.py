@@ -1,6 +1,7 @@
 import json
 import re
 import os
+from typing import List
 
 from settings.constants import ALL_STACK_PATH, MY_STACK_PATH
 
@@ -45,6 +46,20 @@ def check_skill(skill: str, skills: dict):
     except KeyError:
         submit_for_verification(skill, skills)
 
+def get_relevant_experience(requirements: list):
+    relevant = ''
+    irrelevant = ''
+    user_skills: dict = read_stack(MY_STACK_PATH)
+    all_skills: dict = read_stack(ALL_STACK_PATH)
+    for i in range(len(requirements)):
+        check_skill(requirements[i], all_skills)
+        try:
+            relevant += f'{user_skills[requirements[i].lower()]}, '
+        except KeyError:
+            irrelevant += f'{requirements[i]}, '
+    add_to_stack(all_skills, ALL_STACK_PATH)
+    return relevant.strip(', '), irrelevant.strip(', ')
+
 
 def iteration_for_check_skills(filtered_skills: list, skills: dict):
     """Итерирует по списку скилов."""
@@ -58,7 +73,7 @@ def iteration_for_check_user_skills(all_skills, user_skills):
         check_skill(value, user_skills)
 
 
-def filtering_skills(data: str) -> list:
+def filtering_skills(data: str) -> List[str]:
     """
     Фильтрует строку с требованиями из вакансии и превращает ее в список.
     """
@@ -69,11 +84,17 @@ def filtering_skills(data: str) -> list:
     )
     return [i for i in filter(regex_filter.match, fuck.split(' '))]
 
+def split_requirements_string(data: str) -> List[str]:
+    fuck = data.split('\n')
+    return fuck
 
-def get_work_requirements():
-    """Функция для наполнения словаря со всевозможными скилами."""
+
+def get_work_requirements(text: str):
+    """Функция для наполнения словаря
+    со всевозможными скилами c помощью консоли."""
     skills = read_stack(ALL_STACK_PATH)
-    data_string = read_txt()
+    # data_string = read_txt()
+    data_string = text
     filtered_skills = filtering_skills(data_string)
     iteration_for_check_skills(filtered_skills, skills)
     add_to_stack(skills, ALL_STACK_PATH)
@@ -90,4 +111,5 @@ def add_my_skills():
 
 
 if __name__ == '__main__':
-    add_my_skills()
+    # add_my_skills()
+    split_requirements_string('PostgreSQL\nPython\nKafka\nDocker\nDjango Framework\nMongoDB\nRabbitMQ\nElasticsearch\nRedis\nCelery\nNginx')

@@ -17,9 +17,9 @@ WhatsApp - {phone_number}
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-ALL_STACK_PATH = os.path.join('cover_letters', 'hard_skills.json')
+ALL_STACK_PATH = os.path.join('data', 'hard_skills.json')
 
-MY_STACK_PATH = os.path.join('cover_letters', 'user_skills.json')
+MY_STACK_PATH = os.path.join('data', 'user_skills.json')
 
 FIRST_NAME = 'Дмитрий'
 LAST_NAME = 'Майстренко'

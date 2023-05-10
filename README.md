@@ -5,4 +5,4 @@ Telegram-bot kazbask_reminder. Accepts a request, a time, and an event to be rem
 docker build -t cover_letters .
 
 запустить контейнер
-docker run --name cover_letters -p 80:80 cover_letters
+docker run --name cover_letters -d -p 80:80 cover_letters

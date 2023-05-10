@@ -44,7 +44,8 @@ def check_skill(skill: str, skills: dict):
     try:
         skills[skill.lower()]
     except KeyError:
-        submit_for_verification(skill, skills)
+        pass
+        # submit_for_verification(skill, skills)# Это нужно на будущее
 
 def get_relevant_experience(requirements: list):
     relevant = ''

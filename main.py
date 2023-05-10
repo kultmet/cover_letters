@@ -44,12 +44,12 @@ async def create_letter(item: LetterData):
 #     )})
 #     return response
 
-@app.post('/recognize_req/')
+@app.post('/split_req/')
 async def recognize_skills(item: RequirementText):
     filtered_data = split_requirements_string(item.text)
     return {'filtered_data': filtered_data}
 
-@app.get('/recognize_req/')
-async def get_recognize_skills(text: str):
-    filtered_data = split_requirements_string(text)
+@app.post('/recognize_req/')
+async def get_recognize_skills(item: RequirementText):
+    filtered_data = filtering_skills(item.text)
     return {'filtered_data': filtered_data}

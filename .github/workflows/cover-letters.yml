@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Cover Letters CI
 
 on:
   push:

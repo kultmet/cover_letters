@@ -16,9 +16,20 @@ WhatsApp - {phone_number}
 Спасибо за внимание!"""
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(BASE_DIR)
 
-ALL_STACK_PATH = os.path.join(BASE_DIR, 'data', 'hard_skills.json')
-print(ALL_STACK_PATH)
-MY_STACK_PATH = os.path.join(BASE_DIR, 'data', 'user_skills.py')
-print(MY_STACK_PATH)
+ALL_STACK_PATH = os.path.join('data', 'hard_skills.json')
+
+MY_STACK_PATH = os.path.join('data', 'user_skills.json')
+
+FIRST_NAME = 'Дмитрий'
+LAST_NAME = 'Майстренко'
+TELEGRAM = '@kultmet_1'
+PHONE_NUMBER = '+79676411880'
+
+COMPANY = 'Бар'
+POSITION = 'Хороший парень'
+INTEREST = 'пить пиво вместе'
+REQUIREMENTS = [
+    'Python', 'PostgreSQL', 'Linux', 'Docker', 'Asyncio',
+    'Redis', 'Git', 'GraphQL', 'Kubernetes', 'fuck'
+]

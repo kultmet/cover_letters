@@ -5,7 +5,10 @@ Telegram-bot cover_letters
 docker build -t cover_letters .
 
 запустить контейнер
-docker run --name cover_letters -d -p 80:80 cover_letters
+docker 
+```
+run --name cover_letters -d -p 80:80 cover_letters
+```
 
 rabbitMQ
 ```

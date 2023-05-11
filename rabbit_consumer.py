@@ -1,10 +1,11 @@
-import asyncio
 import logging
 
+import asyncio
 import aio_pika
 
+
 async def main() -> None:
-    # logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG)
     connection = await aio_pika.connect_robust(
         'amqp://guest:guest@127.0.0.1:5672/',
     )
@@ -23,7 +24,7 @@ async def main() -> None:
                     # print(message)
                     print(message.body.decode())
                     # if queue.name in message.body.decode():
-                        # print(message.body.decode())
+
 
 if __name__ == '__main__':
     asyncio.run(main())

@@ -47,6 +47,7 @@ def check_skill(skill: str, skills: dict):
         pass
         # submit_for_verification(skill, skills)# Это нужно на будущее
 
+
 def get_relevant_experience(requirements: list):
     relevant = ''
     irrelevant = ''
@@ -85,6 +86,7 @@ def filtering_skills(data: str) -> List[str]:
     )
     return [i for i in filter(regex_filter.match, fuck.split(' '))]
 
+
 def split_requirements_string(data: str) -> List[str]:
     fuck = data.split('\n')
     return fuck
@@ -113,4 +115,7 @@ def add_my_skills():
 
 if __name__ == '__main__':
     # add_my_skills()
-    split_requirements_string('PostgreSQL\nPython\nKafka\nDocker\nDjango Framework\nMongoDB\nRabbitMQ\nElasticsearch\nRedis\nCelery\nNginx')
+    split_requirements_string(
+        ('PostgreSQL\nPython\nKafka\nDocker\nDjango Framework\nMongoDB'
+         '\nRabbitMQ\nElasticsearch\nRedis\nCelery\nNginx')
+    )

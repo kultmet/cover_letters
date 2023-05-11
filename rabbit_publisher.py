@@ -14,7 +14,9 @@ async def main() -> None:
         channel = await connection.channel()
         for i in range(100):
             await channel.default_exchange.publish(
-                aio_pika.Message(body=f'хуй {i} пососи мою жопу!!!!!!'.encode()),
+                aio_pika.Message(
+                    body=f'хуй {i} пососи мою жопу!!!!!!'.encode()
+                ),
                 routing_key=routing_key,
             )
 

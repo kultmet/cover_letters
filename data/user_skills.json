@@ -28,5 +28,6 @@
   "orm": "ORM",
   "rest": "REST",
   "dockercompose": "dockercompose",
-  "mongo": "Mongo"
+  "mongo": "Mongo",
+  "fastapi": "FastAPI"
 }

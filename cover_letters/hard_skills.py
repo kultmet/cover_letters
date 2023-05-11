@@ -1,7 +1,7 @@
 import json
 import re
 import os
-from typing import List
+from typing import List, Dict
 
 from settings.constants import ALL_STACK_PATH, MY_STACK_PATH
 
@@ -21,7 +21,7 @@ def add_to_stack(skills: dict, stack: str):
         json.dump(skills, file, indent=2, ensure_ascii=False)
 
 
-def add_skill(value: str, skills):
+async def add_skill(value: str, skills: Dict[str, str]):
     skills[value.lower()] = value
 
 
@@ -103,6 +103,7 @@ def get_work_requirements(text: str):
     add_to_stack(skills, ALL_STACK_PATH)
 
 
+# Это будет удалено. Нужно взять проверку существования файла(на будущее)
 def add_my_skills():
     """Функция заполняет словарь со скилами пользователя."""
     all_skills = read_stack(ALL_STACK_PATH)
@@ -111,6 +112,19 @@ def add_my_skills():
     user_skills = read_stack(MY_STACK_PATH)
     iteration_for_check_user_skills(all_skills, user_skills)
     add_to_stack(user_skills, MY_STACK_PATH)
+
+
+async def add_skill_to_stack(skill: str, stack: str) -> None:
+    """Добавляет один скилл в стэк пользователя."""
+    skills: Dict[str, str] = read_stack(stack)
+    await add_skill(skill, skills)
+    add_to_stack(skills, stack)
+
+
+async def get_all_skills(stack: str):
+    """Возвращает все скиллы пользователя."""
+    skills: Dict[str, str] = read_stack(stack)
+    return (i for i in skills.values())
 
 
 if __name__ == '__main__':

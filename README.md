@@ -1,5 +1,11 @@
 # cover_letters
 Telegram-bot cover_letters
+
+Запустить локально
+```
+uvicorn main:app --reload
+```
+
 собрать образ
 
 docker build -t cover_letters .
@@ -19,3 +25,9 @@ docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-manag
 ```
 
 После этого можно открыть веб-интерфейс RabbitMQ в браузере по ссылке http://127.0.0.1:15672/
+
+
+Сделано
+
+эндпоинты для получения и добавления скиллов в стек пользователя
+эндпоинт для получения всех доступных (общих) скиллов

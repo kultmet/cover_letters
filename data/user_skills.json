@@ -29,5 +29,7 @@
   "rest": "REST",
   "dockercompose": "dockercompose",
   "mongo": "Mongo",
-  "fastapi": "FastAPI"
+  "fastapi": "FastAPI",
+  "rabbitmq": "RabbitMQ",
+  "celery(redis)": "Celery(Redis)"
 }

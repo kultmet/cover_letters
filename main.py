@@ -5,11 +5,10 @@ from pydantic import BaseModel
 
 from cover_letters.cover_letter_generator import letter_generator
 from cover_letters.hard_skills import (
-    filtering_skills,
-    split_requirements_string,
     add_skill_to_stack,
     get_all_skills,
-    read_stack
+    read_stack,
+    requirements_filter
 )
 from settings.constants import MY_STACK_PATH, ALL_STACK_PATH
 
@@ -47,15 +46,9 @@ async def create_letter(item: LetterData):
     return response
 
 
-@app.post('/split_req/')
+@app.post('/requirements/')
 async def recognize_skills(item: RequirementText):
-    filtered_data = split_requirements_string(item.text)
-    return {'filtered_data': filtered_data}
-
-
-@app.post('/recognize_req/')
-async def get_recognize_skills(item: RequirementText):
-    filtered_data = filtering_skills(item.text)
+    filtered_data = requirements_filter(item.text)
     return {'filtered_data': filtered_data}
 
 

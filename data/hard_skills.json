@@ -3,7 +3,7 @@
   "python": "Python",
   "flask": "Flask",
   "kafka": "Kafka",
-  "postgresq": "PostgreSQ",
+  "postgres": "PostgreSQL",
   "sqlalchemy": "SqlAlchemy",
   "celery": "Celery",
   "pytest,": "pytest,",

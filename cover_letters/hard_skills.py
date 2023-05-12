@@ -1,39 +1,24 @@
 import json
-import re
 import os
 from typing import List, Dict
 
 from settings.constants import ALL_STACK_PATH, MY_STACK_PATH
 
 
-def read_txt():
-    with open('req.txt', 'r', encoding='utf-8') as file:
-        return file.read()
-
-
-def read_stack(stack: str) -> dict:
-    with open(stack, 'r') as file:
+def read_stack(stack_path: str) -> dict:
+    if not os.path.exists(stack_path):
+        add_to_stack({}, stack_path)
+    with open(stack_path, 'r') as file:
         return json.load(file)
 
 
-def add_to_stack(skills: dict, stack: str):
-    with open(stack, 'w') as file:
+def add_to_stack(skills: dict, stack_path: str):
+    with open(stack_path, 'w') as file:
         json.dump(skills, file, indent=2, ensure_ascii=False)
 
 
 async def add_skill(value: str, skills: Dict[str, str]):
     skills[value.lower()] = value
-
-
-def submit_for_verification(keyword: str, skills: dict):
-    check = {
-        'y': add_skill,
-    }
-    answer = input(f'{keyword}>>')
-    try:
-        check[answer](keyword, skills)
-    except KeyError:
-        pass
 
 
 def check_skill(skill: str, skills: dict):
@@ -45,7 +30,6 @@ def check_skill(skill: str, skills: dict):
         skills[skill.lower()]
     except KeyError:
         pass
-        # submit_for_verification(skill, skills)# Это нужно на будущее
 
 
 def get_relevant_experience(requirements: list):
@@ -75,45 +59,6 @@ def iteration_for_check_user_skills(all_skills, user_skills):
         check_skill(value, user_skills)
 
 
-def filtering_skills(data: str) -> List[str]:
-    """
-    Фильтрует строку с требованиями из вакансии и превращает ее в список.
-    """
-    regex_filter = re.compile(r'([a-zA-Z]+)')
-    data = ' '.join(data.split('\n'))
-    fuck = ''.join(
-        [i for i in (data) if i not in (',', ';', '.', '-', ')', '(')]
-    )
-    return [i for i in filter(regex_filter.match, fuck.split(' '))]
-
-
-def split_requirements_string(data: str) -> List[str]:
-    fuck = data.split('\n')
-    return fuck
-
-
-def get_work_requirements(text: str):
-    """Функция для наполнения словаря
-    со всевозможными скилами c помощью консоли."""
-    skills = read_stack(ALL_STACK_PATH)
-    # data_string = read_txt()
-    data_string = text
-    filtered_skills = filtering_skills(data_string)
-    iteration_for_check_skills(filtered_skills, skills)
-    add_to_stack(skills, ALL_STACK_PATH)
-
-
-# Это будет удалено. Нужно взять проверку существования файла(на будущее)
-def add_my_skills():
-    """Функция заполняет словарь со скилами пользователя."""
-    all_skills = read_stack(ALL_STACK_PATH)
-    if not os.path.exists(MY_STACK_PATH):
-        add_to_stack({}, MY_STACK_PATH)
-    user_skills = read_stack(MY_STACK_PATH)
-    iteration_for_check_user_skills(all_skills, user_skills)
-    add_to_stack(user_skills, MY_STACK_PATH)
-
-
 async def add_skill_to_stack(skill: str, stack: str) -> None:
     """Добавляет один скилл в стэк пользователя."""
     skills: Dict[str, str] = read_stack(stack)
@@ -127,9 +72,10 @@ async def get_all_skills(stack: str):
     return (i for i in skills.values())
 
 
-if __name__ == '__main__':
-    # add_my_skills()
-    split_requirements_string(
-        ('PostgreSQL\nPython\nKafka\nDocker\nDjango Framework\nMongoDB'
-         '\nRabbitMQ\nElasticsearch\nRedis\nCelery\nNginx')
-    )
+def requirements_filter(text: str) -> List[str]:
+    all_skills = read_stack(ALL_STACK_PATH)
+    result = []
+    for skill, value in all_skills.items():
+        if skill in text.lower():
+            result.append(value)
+    return result

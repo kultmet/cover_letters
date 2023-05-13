@@ -13,6 +13,7 @@ from cover_letters.hard_skills import (
 from settings.constants import MY_STACK_PATH, ALL_STACK_PATH
 
 app = FastAPI()
+# Fuck
 
 
 class LetterData(BaseModel):

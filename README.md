@@ -1,5 +1,5 @@
 # cover_letters
-Telegram-bot cover_letters
+cover_letters
 
 Запустить локально
 ```
@@ -11,9 +11,8 @@ uvicorn main:app --reload
 docker build -t cover_letters .
 
 запустить контейнер
-docker 
 ```
-run --name cover_letters -d -p 80:80 cover_letters
+docker run --name cover_letters --rm -d -p 80:80 kultmet/cover_letters:1.1
 ```
 
 rabbitMQ

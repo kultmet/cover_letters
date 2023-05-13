@@ -21,4 +21,4 @@ jobs:
           script: |
             # sudo docker pull kultmet/cover_letters:1.1
             sudo docker stop cover_letters
-            docker run --name cover_letters --rm --restart=always -d -p 80:80 kultmet/cover_letters:1.1
+            docker run --name cover_letters --rm -d -p 80:80 kultmet/cover_letters:1.1

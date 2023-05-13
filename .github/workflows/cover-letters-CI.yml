@@ -60,7 +60,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            docker image rm -f kultmet/cover_letters:1.1
-            docker pull kultmet/cover_letters:1.1
-            docker stop cover_letters
-            docker run --name cover_letters --rm -d -p 80:80 kultmet/cover_letters:1.1
+            # docker image rm -f 
+            sudo docker stop cover_letters
+            sudo docker pull kultmet/cover_letters:1.1
+            sudo docker run --name cover_letters --rm -d -p 80:80 kultmet/cover_letters:1.1
